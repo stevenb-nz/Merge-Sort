@@ -177,9 +177,17 @@ End
 	#tag Event
 		Sub Action()
 		  dim i as integer
+		  dim a as StringArray
+		  redim arrays(-1)
 		  
-		  for i = 1 to 1000
+		  for i = 1 to 10
 		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
+		  next
+		  
+		  for i = 1 to 10
+		    a = new StringArray
+		    a.list.append SourceListbox.list(i-1)
+		    arrays.Append a
 		  next
 		End Sub
 	#tag EndEvent
