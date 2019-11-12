@@ -166,6 +166,24 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Method, Flags = &h0
+		Function merge(a1 as StringArray, a2 as StringArray) As StringArray
+		  dim ra As new StringArray
+		  dim i as integer
+		  
+		  for i = 0 to UBound(a1.items)
+		    ra.items.Append a1.items(i)
+		  next
+		  for i = 0 to UBound(a2.items)
+		    ra.items.Append a2.items(i)
+		  next
+		  
+		  return ra
+		  
+		End Function
+	#tag EndMethod
+
+
 	#tag Property, Flags = &h0
 		mergeArrays() As stringArray
 	#tag EndProperty
@@ -180,6 +198,7 @@ End
 		  dim a as StringArray
 		  redim mergeArrays(-1)
 		  
+		  SourceListbox.DeleteAllRows
 		  for i = 1 to 10
 		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
 		  next
@@ -192,7 +211,15 @@ End
 		  
 		  while mergeArrays.Ubound > 0
 		    mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
+		    mergeArrays.Remove 0
+		    mergeArrays.Remove 0
 		  wend
+		  
+		  ResultListbox.DeleteAllRows
+		  for i = 1 to 10
+		    ResultListbox.AddRow mergeArrays(0).items(i-1)
+		  next
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
