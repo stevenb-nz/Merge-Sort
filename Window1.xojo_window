@@ -167,11 +167,7 @@ End
 
 #tag WindowCode
 	#tag Property, Flags = &h0
-		mergedArrays() As stringArray
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		sourceArrays() As stringArray
+		mergeArrays() As stringArray
 	#tag EndProperty
 
 
@@ -182,7 +178,7 @@ End
 		Sub Action()
 		  dim i as integer
 		  dim a as StringArray
-		  redim sourceArrays(-1)
+		  redim mergeArrays(-1)
 		  
 		  for i = 1 to 10
 		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
@@ -190,12 +186,12 @@ End
 		  
 		  for i = 1 to 10
 		    a = new StringArray
-		    a.list.append SourceListbox.list(i-1)
-		    sourceArrays.Append a
+		    a.items.append SourceListbox.list(i-1)
+		    mergeArrays.Append a
 		  next
 		  
-		  while sourceArrays.Ubound > 0
-		    'merge
+		  while mergeArrays.Ubound > 0
+		    mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
 		  wend
 		End Sub
 	#tag EndEvent

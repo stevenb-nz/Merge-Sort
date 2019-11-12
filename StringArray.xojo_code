@@ -1,7 +1,7 @@
 #tag Class
 Protected Class StringArray
 	#tag Property, Flags = &h0
-		list(-1) As String
+		items(-1) As Variant
 	#tag EndProperty
 
 
