@@ -181,7 +181,7 @@ End
 		    ElseIf a1p > a1.items.Ubound then
 		      ra.items.Append a2.items(a2p)
 		      a2p = a2p + 1
-		    elseif a1.items(a1p) < a2.items(a2p) then
+		    elseif prefer(a1.items(a1p),a2.items(a2p)) then
 		      ra.items.Append a1.items(a1p)
 		      a1p = a1p + 1
 		    else
@@ -191,6 +191,21 @@ End
 		  loop until a1p > a1.items.Ubound and a2p > a2.items.Ubound
 		  
 		  return ra
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function prefer(s1 as String, s2 as String) As Boolean
+		  dim n as Integer
+		  
+		  n = MsgBox ("Do you prefer "+s1+" to "+s2+"?",804)
+		  
+		  if n=6 then
+		    return true
+		  else
+		    return false
+		  end
 		  
 		End Function
 	#tag EndMethod
