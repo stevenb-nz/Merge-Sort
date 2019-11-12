@@ -169,14 +169,26 @@ End
 	#tag Method, Flags = &h0
 		Function merge(a1 as StringArray, a2 as StringArray) As StringArray
 		  dim ra As new StringArray
-		  dim i as integer
+		  dim a1p,a2p as integer
 		  
-		  for i = 0 to UBound(a1.items)
-		    ra.items.Append a1.items(i)
-		  next
-		  for i = 0 to UBound(a2.items)
-		    ra.items.Append a2.items(i)
-		  next
+		  a1p = 0
+		  a2p = 0
+		  
+		  Do
+		    if a2p > a2.items.Ubound then
+		      ra.items.Append a1.items(a1p)
+		      a1p = a1p + 1
+		    ElseIf a1p > a1.items.Ubound then
+		      ra.items.Append a2.items(a2p)
+		      a2p = a2p + 1
+		    elseif a1.items(a1p) < a2.items(a2p) then
+		      ra.items.Append a1.items(a1p)
+		      a1p = a1p + 1
+		    else
+		      ra.items.Append a2.items(a2p)
+		      a2p = a2p + 1
+		    end
+		  loop until a1p > a1.items.Ubound and a2p > a2.items.Ubound
 		  
 		  return ra
 		  
