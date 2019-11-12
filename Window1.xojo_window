@@ -130,7 +130,7 @@ Begin Window Window1
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin PushButton PushButton1
+   Begin PushButton GoButton
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -167,18 +167,22 @@ End
 
 #tag WindowCode
 	#tag Property, Flags = &h0
-		arrays() As stringArray
+		mergedArrays() As stringArray
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		sourceArrays() As stringArray
 	#tag EndProperty
 
 
 #tag EndWindowCode
 
-#tag Events PushButton1
+#tag Events GoButton
 	#tag Event
 		Sub Action()
 		  dim i as integer
 		  dim a as StringArray
-		  redim arrays(-1)
+		  redim sourceArrays(-1)
 		  
 		  for i = 1 to 10
 		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
@@ -187,8 +191,12 @@ End
 		  for i = 1 to 10
 		    a = new StringArray
 		    a.list.append SourceListbox.list(i-1)
-		    arrays.Append a
+		    sourceArrays.Append a
 		  next
+		  
+		  while sourceArrays.Ubound > 0
+		    'merge
+		  wend
 		End Sub
 	#tag EndEvent
 #tag EndEvents
