@@ -166,6 +166,11 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Property, Flags = &h0
+		arrays() As stringArray
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
 #tag Events PushButton1
