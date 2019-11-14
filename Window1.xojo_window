@@ -221,16 +221,17 @@ End
 #tag Events GoButton
 	#tag Event
 		Sub Action()
-		  dim i as integer
+		  dim i,n as integer
 		  dim a as StringArray
 		  redim mergeArrays(-1)
 		  
+		  n = 25
 		  SourceListbox.DeleteAllRows
-		  for i = 1 to 10
+		  for i = 1 to n
 		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
 		  next
 		  
-		  for i = 1 to 10
+		  for i = 1 to n
 		    a = new StringArray
 		    a.items.append SourceListbox.list(i-1)
 		    mergeArrays.Append a
@@ -243,7 +244,7 @@ End
 		  wend
 		  
 		  ResultListbox.DeleteAllRows
-		  for i = 1 to 10
+		  for i = 1 to n
 		    ResultListbox.AddRow mergeArrays(0).items(i-1)
 		  next
 		  
