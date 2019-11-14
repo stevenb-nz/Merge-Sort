@@ -221,11 +221,12 @@ End
 #tag Events GoButton
 	#tag Event
 		Sub Action()
-		  dim i,n as integer
+		  dim i,n,nc as integer
 		  dim a as StringArray
 		  redim mergeArrays(-1)
 		  
-		  n = 25
+		  n = 10
+		  nc = round(n * (log(n)/log(2)))
 		  SourceListbox.DeleteAllRows
 		  for i = 1 to n
 		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
