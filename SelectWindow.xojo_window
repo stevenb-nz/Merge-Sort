@@ -109,18 +109,18 @@ End
 
 #tag Events Label1
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  ordered = true
-		  close
+		  Hide
 		  
 		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events Label2
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  ordered = false
-		  close
+		  Hide
 		  
 		End Function
 	#tag EndEvent

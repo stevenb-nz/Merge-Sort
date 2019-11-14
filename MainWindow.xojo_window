@@ -270,14 +270,10 @@ End
 		  dim n as Integer
 		  
 		  cnLabel.Text = str(val(cnLabel.Text)+1)
-		  n = MsgBox ("Do you prefer "+s1+" to "+s2+"?",804)
-		  
-		  if n=6 then
-		    return true
-		  else
-		    return false
-		  end
-		  
+		  SelectWindow.Label1.Text = s1
+		  SelectWindow.Label2.Text = s2
+		  SelectWindow.ShowModal
+		  return SelectWindow.ordered
 		End Function
 	#tag EndMethod
 
