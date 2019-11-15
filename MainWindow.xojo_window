@@ -291,34 +291,40 @@ End
 		  dim i,n as integer
 		  dim a as StringArray
 		  redim mergeArrays(-1)
+		  dim f as FolderItem
+		  dim t as TextInputStream
 		  
-		  cnLabel.text = "0"
-		  n = 10
-		  SourceListbox.DeleteAllRows
-		  for i = 1 to n
-		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
-		  next
-		  
-		  for i = 1 to n
-		    a = new StringArray
-		    a.items.append SourceListbox.list(i-1)
-		    mergeArrays.Append a
-		  next
-		  
-		  ncLabel.Text = str(mergeArrays.Ubound)
-		  
-		  while mergeArrays.Ubound > 0
-		    mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
-		    mergeArrays.Remove 0
-		    mergeArrays.Remove 0
+		  f = GetOpenFolderItem(FileTypes.Text)
+		  if f <> nil then
+		    t = TextInputStream.Open(f)
+		    SourceListbox.DeleteAllRows
+		    n=0
+		    while not t.eof
+		      SourceListbox.AddRow t.ReadLine
+		      n=n+1
+		    wend
+		    
+		    for i = 1 to n
+		      a = new StringArray
+		      a.items.append SourceListbox.list(i-1)
+		      mergeArrays.Append a
+		    next
+		    
+		    cnLabel.text = "0"
 		    ncLabel.Text = str(mergeArrays.Ubound)
-		  wend
-		  
-		  ResultListbox.DeleteAllRows
-		  for i = 1 to n
-		    ResultListbox.AddRow mergeArrays(0).items(i-1)
-		  next
-		  
+		    
+		    while mergeArrays.Ubound > 0
+		      mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
+		      mergeArrays.Remove 0
+		      mergeArrays.Remove 0
+		      ncLabel.Text = str(mergeArrays.Ubound)
+		    wend
+		    
+		    ResultListbox.DeleteAllRows
+		    for i = 1 to n
+		      ResultListbox.AddRow mergeArrays(0).items(i-1)
+		    next
+		  end
 		End Sub
 	#tag EndEvent
 #tag EndEvents

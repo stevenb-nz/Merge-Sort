@@ -7,6 +7,7 @@ MenuBar=MainMenuBar;MainMenuBar.xojo_menu;&h0000000010285FFF;&h0000000000000000;
 BuildSteps=Build Automation;Build Automation.xojo_code;&h0000000055A07FFF;&h0000000000000000;false
 Class=StringArray;StringArray.xojo_code;&h0000000042A78FFF;&h0000000000000000;false
 Window=SelectWindow;SelectWindow.xojo_window;&h00000000714CB7FF;&h0000000000000000;false
+FileTypeSet=FileTypes;FileTypes.xojo_filetypeset;&h00000000094C67FF;&h0000000000000000;false
 DefaultWindow=MainWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
