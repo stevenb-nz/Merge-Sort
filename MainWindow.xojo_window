@@ -294,7 +294,6 @@ End
 		  
 		  cnLabel.text = "0"
 		  n = 10
-		  ncLabel.Text  = str(round((n-1) * (log(n-1)/log(2))))
 		  SourceListbox.DeleteAllRows
 		  for i = 1 to n
 		    SourceListbox.AddRow chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))+chr(app.myrandom.InRange(65,90))
@@ -306,10 +305,13 @@ End
 		    mergeArrays.Append a
 		  next
 		  
+		  ncLabel.Text = str(mergeArrays.Ubound)
+		  
 		  while mergeArrays.Ubound > 0
 		    mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
 		    mergeArrays.Remove 0
 		    mergeArrays.Remove 0
+		    ncLabel.Text = str(mergeArrays.Ubound)
 		  wend
 		  
 		  ResultListbox.DeleteAllRows

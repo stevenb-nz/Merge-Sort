@@ -353,6 +353,6 @@ End
 	#tag ViewProperty
 		Name="ordered"
 		Group="Behavior"
-		Type="Integer"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
