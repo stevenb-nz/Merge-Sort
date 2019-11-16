@@ -277,6 +277,27 @@ End
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub saveMergeArrays()
+		  dim i,j as integer
+		  dim f as FolderItem
+		  dim t as TextOutputStream
+		  
+		  f = SpecialFolder.Preferences.Child("mergeSortTemp.txt")
+		  t = TextOutputStream.Create(f)
+		  
+		  for i = 0 to UBound(mergeArrays)
+		    for j = 0 to UBound(mergeArrays(i).items)
+		      t.Write mergeArrays(i).items(j)+chr(9)
+		    next
+		    t.Write chr(13)
+		  next
+		  
+		  t.Close
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		mergeArrays() As stringArray
@@ -314,6 +335,7 @@ End
 		    ncLabel.Text = str(mergeArrays.Ubound)
 		    
 		    while mergeArrays.Ubound > 0
+		      saveMergeArrays
 		      mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
 		      mergeArrays.Remove 0
 		      mergeArrays.Remove 0
