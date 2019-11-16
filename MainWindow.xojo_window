@@ -280,11 +280,10 @@ End
 	#tag Method, Flags = &h0
 		Sub saveMergeArrays()
 		  dim i,j as integer
-		  dim f as FolderItem
 		  dim t as TextOutputStream
 		  
-		  f = SpecialFolder.Preferences.Child("mergeSortTemp.txt")
-		  t = TextOutputStream.Create(f)
+		  fmat = SpecialFolder.Preferences.Child("mergeSortTemp.txt")
+		  t = TextOutputStream.Create(fmat)
 		  
 		  for i = 0 to UBound(mergeArrays)
 		    for j = 0 to UBound(mergeArrays(i).items)
@@ -298,6 +297,10 @@ End
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		fmat As FolderItem
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		mergeArrays() As stringArray
@@ -341,6 +344,7 @@ End
 		      mergeArrays.Remove 0
 		      ncLabel.Text = str(mergeArrays.Ubound)
 		    wend
+		    fmat.Delete
 		    
 		    ResultListbox.DeleteAllRows
 		    for i = 1 to n
