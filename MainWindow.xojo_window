@@ -282,7 +282,7 @@ End
 		  dim i,j as integer
 		  dim t as TextOutputStream
 		  
-		  fmat = SpecialFolder.Preferences.Child("mergeSortTemp.txt")
+		  fmat = SpecialFolder.Preferences.Child("mergeArraysTemp.txt")
 		  t = TextOutputStream.Create(fmat)
 		  
 		  for i = 0 to UBound(mergeArrays)
