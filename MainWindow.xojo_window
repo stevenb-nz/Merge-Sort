@@ -237,6 +237,26 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h0
+		Sub doMerge(n as integer)
+		  dim i As Integer
+		  
+		  while mergeArrays.Ubound > 0
+		    saveMergeArrays
+		    mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
+		    mergeArrays.Remove 0
+		    mergeArrays.Remove 0
+		    ncLabel.Text = str(mergeArrays.Ubound)
+		  wend
+		  fmat.Delete
+		  
+		  ResultListbox.DeleteAllRows
+		  for i = 1 to n
+		    ResultListbox.AddRow mergeArrays(0).items(i-1)
+		  next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function merge(a1 as StringArray, a2 as StringArray) As StringArray
 		  dim ra As new StringArray
 		  dim a1p,a2p as integer
@@ -282,7 +302,6 @@ End
 		  dim i,j as integer
 		  dim t as TextOutputStream
 		  
-		  fmat = SpecialFolder.Preferences.Child("mergeArraysTemp.txt")
 		  t = TextOutputStream.Create(fmat)
 		  
 		  for i = 0 to UBound(mergeArrays)
@@ -318,6 +337,8 @@ End
 		  dim f as FolderItem
 		  dim t as TextInputStream
 		  
+		  fmat = SpecialFolder.Preferences.Child("mergeArraysTemp.txt")
+		  
 		  f = GetOpenFolderItem(FileTypes.Text)
 		  if f <> nil then
 		    t = TextInputStream.Open(f)
@@ -337,19 +358,7 @@ End
 		    cnLabel.text = "0"
 		    ncLabel.Text = str(mergeArrays.Ubound)
 		    
-		    while mergeArrays.Ubound > 0
-		      saveMergeArrays
-		      mergeArrays.Append merge(mergeArrays(0),mergeArrays(1))
-		      mergeArrays.Remove 0
-		      mergeArrays.Remove 0
-		      ncLabel.Text = str(mergeArrays.Ubound)
-		    wend
-		    fmat.Delete
-		    
-		    ResultListbox.DeleteAllRows
-		    for i = 1 to n
-		      ResultListbox.AddRow mergeArrays(0).items(i-1)
-		    next
+		    doMerge(n)
 		  end
 		End Sub
 	#tag EndEvent
