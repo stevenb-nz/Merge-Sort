@@ -300,6 +300,7 @@ End
 	#tag Method, Flags = &h0
 		Sub saveMergeArrays()
 		  dim i,j as integer
+		  dim s as string
 		  dim t as TextOutputStream
 		  
 		  t = TextOutputStream.Create(fmat)
@@ -307,10 +308,11 @@ End
 		  t.WriteLine fs.NativePath
 		  t.WriteLine cnLabel.Text
 		  for i = 0 to UBound(mergeArrays)
+		    s = ""
 		    for j = 0 to UBound(mergeArrays(i).items)
-		      t.Write mergeArrays(i).items(j)+chr(9)
+		      s = s + mergeArrays(i).items(j)+chr(9)
 		    next
-		    t.Write chr(13)
+		    t.WriteLine left(s,len(s)-1)
 		  next
 		  
 		  t.Close
@@ -354,7 +356,7 @@ End
 		      s = tt.ReadLine
 		      ss = s.Split(chr(9))
 		      a = new StringArray
-		      for i = 0 to UBound(ss)-1
+		      for i = 0 to UBound(ss)
 		        a.items.Append ss(i)
 		      next
 		      mergeArrays.Append a
