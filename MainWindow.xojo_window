@@ -322,6 +322,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		fs As FolderItem
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		mergeArrays() As stringArray
 	#tag EndProperty
 
@@ -334,14 +338,13 @@ End
 		  dim i,n as integer
 		  dim a as StringArray
 		  redim mergeArrays(-1)
-		  dim f as FolderItem
 		  dim t as TextInputStream
 		  
 		  fmat = SpecialFolder.Preferences.Child("mergeArraysTemp.txt")
 		  
-		  f = GetOpenFolderItem(FileTypes.Text)
-		  if f <> nil then
-		    t = TextInputStream.Open(f)
+		  fs = GetOpenFolderItem(FileTypes.Text)
+		  if fs <> nil then
+		    t = TextInputStream.Open(fs)
 		    SourceListbox.DeleteAllRows
 		    n=0
 		    while not t.eof
