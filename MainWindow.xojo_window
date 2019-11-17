@@ -304,6 +304,8 @@ End
 		  
 		  t = TextOutputStream.Create(fmat)
 		  
+		  t.WriteLine fs.NativePath
+		  t.WriteLine cnLabel.Text
 		  for i = 0 to UBound(mergeArrays)
 		    for j = 0 to UBound(mergeArrays(i).items)
 		      t.Write mergeArrays(i).items(j)+chr(9)
