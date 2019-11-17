@@ -338,14 +338,31 @@ End
 	#tag Event
 		Sub Action()
 		  dim i,n as integer
+		  dim s as String
+		  dim ss() as string
 		  dim a as StringArray
 		  redim mergeArrays(-1)
-		  dim t as TextInputStream
+		  dim t,tt as TextInputStream
 		  
 		  fmat = SpecialFolder.Preferences.Child("mergeArraysTemp.txt")
 		  
-		  fs = GetOpenFolderItem(FileTypes.Text)
-		  if fs <> nil then
+		  if fmat.Exists then
+		    tt = TextInputStream.Open(fmat)
+		    fs = new FolderItem(tt.ReadLine,FolderItem.PathTypeNative)
+		    cnLabel.Text = tt.ReadLine
+		    while not tt.eof
+		      s = tt.ReadLine
+		      ss = s.Split(chr(9))
+		      a = new StringArray
+		      for i = 0 to UBound(ss)-1
+		        a.items.Append ss(i)
+		      next
+		      mergeArrays.Append a
+		    wend
+		    tt.Close
+		    
+		    ncLabel.Text = str(UBound(mergeArrays))
+		    
 		    t = TextInputStream.Open(fs)
 		    SourceListbox.DeleteAllRows
 		    n=0
@@ -353,17 +370,32 @@ End
 		      SourceListbox.AddRow t.ReadLine
 		      n=n+1
 		    wend
-		    
-		    for i = 1 to n
-		      a = new StringArray
-		      a.items.append SourceListbox.list(i-1)
-		      mergeArrays.Append a
-		    next
-		    
-		    cnLabel.text = "0"
-		    ncLabel.Text = str(mergeArrays.Ubound)
+		    t.close
 		    
 		    doMerge(n)
+		  else
+		    fs = GetOpenFolderItem(FileTypes.Text)
+		    if fs <> nil then
+		      t = TextInputStream.Open(fs)
+		      SourceListbox.DeleteAllRows
+		      n=0
+		      while not t.eof
+		        SourceListbox.AddRow t.ReadLine
+		        n=n+1
+		      wend
+		      t.close
+		      
+		      for i = 1 to n
+		        a = new StringArray
+		        a.items.append SourceListbox.list(i-1)
+		        mergeArrays.Append a
+		      next
+		      
+		      cnLabel.text = "0"
+		      ncLabel.Text = str(mergeArrays.Ubound)
+		      
+		      doMerge(n)
+		    end
 		  end
 		End Sub
 	#tag EndEvent
