@@ -23,7 +23,7 @@ Begin Window MainWindow
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "Merge Sort"
    Visible         =   True
    Width           =   696
    Begin Listbox ResultListbox
@@ -156,7 +156,7 @@ Begin Window MainWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   424
+      Top             =   392
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -227,6 +227,38 @@ Begin Window MainWindow
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   52
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton SaveButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Save"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   424
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -399,6 +431,13 @@ End
 		      doMerge(n)
 		    end
 		  end
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events SaveButton
+	#tag Event
+		Sub Action()
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
