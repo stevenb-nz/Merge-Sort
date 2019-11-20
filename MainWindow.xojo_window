@@ -415,6 +415,7 @@ End
 		    if fs <> nil then
 		      t = TextInputStream.Open(fs)
 		      SourceListbox.DeleteAllRows
+		      ResultListbox.DeleteAllRows
 		      n=0
 		      while not t.eof
 		        SourceListbox.AddRow t.ReadLine
@@ -444,7 +445,7 @@ End
 		  dim t as TextOutputStream
 		  dim i as Integer
 		  
-		  f = GetSaveFolderItem(FileTypes.Text, fs.Name+" sorted.txt")
+		  f = GetSaveFolderItem(FileTypes.Text, fs.Name)
 		  if f <> nil then
 		    t = TextOutputStream.Create(f)
 		    for i = 1 to ResultListbox.ListCount
