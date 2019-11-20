@@ -239,7 +239,7 @@ Begin Window MainWindow
       Cancel          =   False
       Caption         =   "Save"
       Default         =   False
-      Enabled         =   True
+      Enabled         =   False
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -285,6 +285,9 @@ End
 		  for i = 1 to n
 		    ResultListbox.AddRow mergeArrays(0).items(i-1)
 		  next
+		  if n > 0 then
+		    SaveButton.Enabled = true
+		  end
 		End Sub
 	#tag EndMethod
 
