@@ -440,7 +440,17 @@ End
 #tag Events SaveButton
 	#tag Event
 		Sub Action()
+		  dim f As FolderItem
+		  dim t as TextOutputStream
+		  dim i as Integer
 		  
+		  f = GetSaveFolderItem(FileTypes.Text, fs.Name+" sorted.txt")
+		  if f <> nil then
+		    t = TextOutputStream.Create(f)
+		    for i = 1 to ResultListbox.ListCount
+		      t.WriteLine ResultListbox.List(i-1)
+		    next
+		  end
 		End Sub
 	#tag EndEvent
 #tag EndEvents
