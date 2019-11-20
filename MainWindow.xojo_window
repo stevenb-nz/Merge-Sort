@@ -281,7 +281,6 @@ End
 		  wend
 		  fmat.Delete
 		  
-		  ResultListbox.DeleteAllRows
 		  for i = 1 to n
 		    ResultListbox.AddRow mergeArrays(0).items(i-1)
 		  next
@@ -402,6 +401,7 @@ End
 		    
 		    t = TextInputStream.Open(fs)
 		    SourceListbox.DeleteAllRows
+		    ResultListbox.DeleteAllRows
 		    n=0
 		    while not t.eof
 		      SourceListbox.AddRow t.ReadLine
